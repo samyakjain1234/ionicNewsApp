@@ -1,0 +1,59 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <!-- <ion-title>loginscreen</ion-title> -->
+  </ion-toolbar>
+  <ion-buttons slot="start">
+  <ion-back-button defaulthref="login" text=""></ion-back-button>
+  </ion-buttons>
+</ion-header>
+
+<ion-content>
+    <ion-card class="ion-no-margin">
+      <ion-img src="assets/images/header1.png"></ion-img>
+      <ion-card-content>
+
+        <form [formGroup]="credentialForm" >
+          <ion-label><strong>Enter Email</strong></ion-label>
+          <ion-item>
+            <ion-input
+              placeholder="Email address"
+              formControlName="email"
+              autofocus="true"
+              clearInput="true"
+            ></ion-input>
+          </ion-item>
+          <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
+            <span *ngIf="email.errors?.required">Email is required</span>
+            <span *ngIf="email.errors?.email">Email is invalid</span>
+          </div>
+       
+          <ion-label><strong>Enter Password</strong></ion-label>
+          <ion-item>
+            <ion-input
+            placeholder="Password"
+            type="password"
+            formControlName="password"
+            clearInput="true"
+          ></ion-input>
+          </ion-item>
+          <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
+            <span *ngIf="password.errors?.required">Password is required</span>
+            <span *ngIf="password.errors?.minlength">Password needs to be 6 characters</span>
+          </div>
+        </form>  
+
+        <ion-button (click)="signIn()" expand="full" color="secondary">Sign in</ion-button>
+
+      </ion-card-content>
+
+
+    </ion-card>
+
+
+    <div class="ion-card-footer">
+     <span>Don’t have an account?</span><button class="ion-no-padding" (click)="goToSignUp()" >Sign Up</button>
+      </div>
+
+
+
+</ion-content>
